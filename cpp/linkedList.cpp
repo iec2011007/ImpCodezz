@@ -31,6 +31,13 @@ int length(Node *node) {
     return 1+length((node->next));
 }
 
+int findElem(Node *node, int query) {
+    if((node->data) == query) return query;
+    if((node->next) == NULL) return -1;
+
+    return findElem((node->next), query);
+}
+
 int main() {
 	Node *head = NULL;
 	int n;
@@ -38,5 +45,7 @@ int main() {
 	createLinkedList(&head, n);
 	printLinkedList(head);
 	cout << "The lenth of the linked list is " << length(head);
+
+	cout << endl << (findElem(head, 9) != -1 ? "Found the element " : "Element Not Found");
 	return 0;
 }
