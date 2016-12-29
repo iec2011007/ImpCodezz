@@ -26,11 +26,17 @@ Node* createLinkedList(Node **node, int n) {
 	return (*node);
 }
 
+int length(Node *node) {
+    if(node == NULL) return 0;
+    return 1+length((node->next));
+}
+
 int main() {
 	Node *head = NULL;
 	int n;
 	cin >> n;
 	createLinkedList(&head, n);
 	printLinkedList(head);
+	cout << "The lenth of the linked list is " << length(head);
 	return 0;
 }
