@@ -49,6 +49,31 @@ int middleElem(Node *node) {
     }
 }
 
+bool detectLoop(Node *node) {
+    Node *ptr1 = node;
+    Node *ptr2 = node;
+    while(1) {
+        if(ptr1 == NULL || ptr2 == NULL || (ptr1 -> next) == NULL || (ptr2 -> next) == NULL || (ptr2 -> next -> next) == NULL) return false;
+        ptr1 = (ptr1 -> next);
+        ptr2 = (ptr2 -> next -> next);
+        if(ptr1 == ptr2) return true;
+    }
+}
+
+Node* createLoop() {
+    Node *store = new Node;
+    store-> next = new Node;
+    store -> next = new Node;
+    store -> next -> next = new Node;
+    store -> next -> next -> next = new Node;
+    //Uncomment to break loop;
+    store -> next -> next -> next -> next = store -> next -> next;
+    return store;
+
+}
+
+
+
 int main() {
 	Node *head = NULL;
 	int n;
@@ -60,5 +85,7 @@ int main() {
 	cout << endl << (findElem(head, 9) != -1 ? "Found the element " : "Element Not Found");
 
 	cout << endl << "Mid Elem " << middleElem(head);
+
+	cout << endl << detectLoop(createLoop());
 	return 0;
 }
