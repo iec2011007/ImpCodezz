@@ -72,6 +72,21 @@ Node* createLoop() {
 
 }
 
+bool checkPallindrome(Node **node1, Node **node2) {
+    Node *startNode = *node1;
+
+    if(startNode == NULL) return true;
+
+    if (checkPallindrome(&(startNode -> next), node2) == false){
+            return false;
+    }
+    if((startNode->data) != ((*node2)-> data)){
+        return false;
+    }
+    *node2 = ((*node2) -> next);
+    return true;
+}
+
 
 
 int main() {
@@ -87,5 +102,7 @@ int main() {
 	cout << endl << "Mid Elem " << middleElem(head);
 
 	cout << endl << detectLoop(createLoop());
+
+	cout << endl << "Pallindrome check " << checkPallindrome(&head, &head);
 	return 0;
 }
