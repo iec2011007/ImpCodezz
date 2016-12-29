@@ -38,6 +38,17 @@ int findElem(Node *node, int query) {
     return findElem((node->next), query);
 }
 
+int middleElem(Node *node) {
+    Node *slow = node;
+    Node *fast = node;
+    while(1) {
+        if(fast == NULL || (fast->next) == NULL ) return (slow->data);
+        if( (fast->next->next) == NULL) return (slow -> next -> data);
+        slow = (slow ->next);
+        fast = (fast -> next -> next);
+    }
+}
+
 int main() {
 	Node *head = NULL;
 	int n;
@@ -47,5 +58,7 @@ int main() {
 	cout << "The lenth of the linked list is " << length(head);
 
 	cout << endl << (findElem(head, 9) != -1 ? "Found the element " : "Element Not Found");
+
+	cout << endl << "Mid Elem " << middleElem(head);
 	return 0;
 }
